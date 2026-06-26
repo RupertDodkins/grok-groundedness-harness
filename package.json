@@ -1,0 +1,30 @@
+{
+  "name": "grok-groundedness-harness",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A small public-API harness for measuring whether Grok answers stay tethered to retrieved evidence.",
+  "scripts": {
+    "verify": "npm run typecheck && npm test",
+    "eval": "tsx src/run-eval.ts",
+    "eval:fixture": "tsx src/run-eval.ts --evals evals/seed.jsonl --out reports/latest.json",
+    "rescore": "tsx src/rescore.ts",
+    "report": "tsx src/report.ts",
+    "report:fixture": "tsx src/report.ts --input reports/latest.json --out reports/latest.html",
+    "gate": "tsx src/gate.ts",
+    "smoke:xai": "tsx src/smoke-xai.ts",
+    "clean": "rm -f reports/*.json reports/*.html reports/*.csv",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.9"
+  }
+}

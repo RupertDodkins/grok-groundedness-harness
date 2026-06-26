@@ -1,0 +1,71 @@
+{
+  "name": "grok_grounded_answer",
+  "schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "decision",
+      "answer",
+      "claims",
+      "overallConfidence",
+      "needsHumanReview"
+    ],
+    "properties": {
+      "decision": {
+        "type": "string",
+        "enum": ["answer", "abstain", "ask_for_context"]
+      },
+      "answer": {
+        "type": "string"
+      },
+      "claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "text",
+            "confidence",
+            "citationIds",
+            "supportLevel"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "citationIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "supportLevel": {
+              "type": "string",
+              "enum": ["direct", "partial", "none", "unknown"]
+            }
+          }
+        }
+      },
+      "overallConfidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "needsHumanReview": {
+        "type": "boolean"
+      },
+      "reviewReason": {
+        "type": "string"
+      }
+    }
+  }
+}
